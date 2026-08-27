@@ -118,3 +118,64 @@ A fully decoupled, message-centric topology utilizing asynchronous message broke
 ---
 
 ## 11. Trade-off Analysis
+
+Low Operational Complexity ◄────────────────────────────────────────► High Scalability Isolation
+(Layered Monolith)       [Option C: Clean + Modular]       (Microservices / Event-Driven)
+* **Option A vs. Option C:** Option A minimizes early boilerplate but sacrifices long-term maintainability and testability. Option C introduces upfront structural abstraction, but protects against code rot and domain coupling.
+* **Option C vs. Option D/E:** Options D and E trade development simplicity and operational low cost for distributed resilience and scale. Option C delivers equal business logic decoupling within a single, low-cost deployment unit.
+
+---
+
+## 12. Risk Analysis
+
+* **Risk 1: Architectural Over-Engineering (Option C):** Introducing excessive abstraction interfaces before domain boundaries fully stabilize.
+  * *Mitigation:* Apply Clean Architecture strictly at the module level; keep internal module implementations simple (avoid premature CQRS/DDD patterns until logic complexity demands them).
+* **Risk 2: Boundary Erosion (Option B/C):** Developers leaking database joins across module boundaries due to running in a single process.
+  * *Mitigation:* Enforce boundaries via C# project references, internal access modifiers, and automated static analysis tools (e.g., NetArchTest).
+* **Risk 3: Deployment Monolith Bottlenecks:** Growth in traffic overwhelming a single process.
+  * *Mitigation:* Clear modular boundaries inside Option C ensure high-load modules can be extracted into standalone microservices with minimal refactoring.
+
+---
+
+## 13. Evolution Path
+
+The platform architecture follows an incremental, data-driven evolution path:
+
+[ Phase 1: MVP ] ──► [ Phase 2: Internal Decoupling ] ──► [ Phase 3: Targeted Microservices ]
+Option C Monolith    In-Process Event Bus (MediatR)     Extract Scaled Modules to Services
+Single ASP.NET Core  Isolated Module Schemas            Distributed Messaging (Kafka/RabbitMQ)
+
+1. **Phase 1 (MVP Launch):** Implement **Option C (Clean Architecture + Modular Monolith)** inside a single ASP.NET Core process with a shared physical relational database using distinct logical module schemas.
+2. **Phase 2 (Growth):** Decouple cross-module communication using in-process domain events and command dispatchers.
+3. **Phase 3 (Scale):** If a specific module (e.g., analytics or public catalog) experiences disproportionate traffic, extract that single module into an independent deployment unit without rewriting core business logic.
+
+---
+
+## 14. Recommended Option
+
+### Selected Architecture: Option C — Clean Architecture + Modular Monolith
+
+**Option C** provides the optimal balance for the platform MVP. It satisfies all single-developer operational constraints by retaining a single ASP.NET Core deployment unit while providing strict, testable boundaries around business rules. Advanced architectural patterns (DDD, CQRS, distributed event streaming) remain optional tools to be introduced only when explicit domain requirements and telemetry justify them.
+
+---
+
+## 15. Why Alternatives Were Not Selected
+
+* **Option A (Layered Monolith):** Rejected due to weak domain boundaries, high risk of spaghetti dependencies, and cumbersome integration-heavy testing.
+* **Option B (Modular Monolith):** Fully embraced, but enhanced into Option C to guarantee pure, framework-independent business rule testing.
+* **Option D (Microservices):** Rejected due to disproportionate operational management, deployment friction, network overhead, and high infrastructure costs for a single-developer MVP.
+* **Option E (Event-Driven Distributed Architecture):** Rejected due to unnecessary asynchronous complexity and eventual consistency challenges for initial data volumes.
+
+---
+
+## 16. Decision Summary
+
+* **Architecture Style:** Clean Architecture + Modular Monolith
+* **Framework & Protocol:** ASP.NET Core REST API
+* **Deployment Topology:** Single Process Container / Low-Cost Host
+* **Evolution Trigger:** Physical module extraction driven exclusively by production performance metrics and scaling requirements.
+
+---
+
+## 17. Next Step
+Proceed to draft **`adrs/ADR-001-architectural-style.md`** to formally record this decision, its context, and its rationale in the Architecture Decision Record log.
