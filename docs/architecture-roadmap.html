@@ -1,0 +1,297 @@
+<title>Architecture Roadmap</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#f3f1ec;
+  --surface:#ffffff;
+  --surface-2:#eae7de;
+  --ink:#26241f;
+  --ink-dim:#6b675c;
+  --line:#d8d4c8;
+  --accent:#2e5a4a;
+  --accent-soft:#dce8e0;
+  --amber:#a86a1c;
+  --amber-soft:#f3e3cc;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1b1a17;
+    --surface:#242220;
+    --surface-2:#2c2a26;
+    --ink:#ece8de;
+    --ink-dim:#a49e8f;
+    --line:#3c392f;
+    --accent:#7fc7a8;
+    --accent-soft:#233a30;
+    --amber:#e0a75e;
+    --amber-soft:#3a2f1c;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1b1a17;
+  --surface:#242220;
+  --surface-2:#2c2a26;
+  --ink:#ece8de;
+  --ink-dim:#a49e8f;
+  --line:#3c392f;
+  --accent:#7fc7a8;
+  --accent-soft:#233a30;
+  --amber:#e0a75e;
+  --amber-soft:#3a2f1c;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"IBM Plex Sans", system-ui, sans-serif;
+  padding:56px 24px 80px;
+}
+.wrap{max-width:840px;margin:0 auto}
+header{margin-bottom:48px}
+.eyebrow{
+  font-family:"IBM Plex Mono", monospace;
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin:0 0 10px;
+}
+h1{
+  font-family:"Fraunces", serif;
+  font-weight:600;
+  font-size:clamp(28px,4.5vw,40px);
+  line-height:1.08;
+  margin:0 0 14px;
+  text-wrap:balance;
+}
+.sub{
+  color:var(--ink-dim);
+  font-size:15.5px;
+  line-height:1.6;
+  max-width:60ch;
+  margin:0;
+}
+
+.roadmap{position:relative}
+.spine{
+  position:absolute;
+  left:23px;
+  top:8px;
+  bottom:8px;
+  width:2px;
+  background:var(--line);
+}
+.stage{
+  position:relative;
+  display:grid;
+  grid-template-columns:48px 1fr;
+  gap:0 22px;
+  padding-bottom:36px;
+}
+.stage:last-child{padding-bottom:0}
+.node{
+  position:relative;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:"IBM Plex Mono", monospace;
+  font-size:13px;
+  font-weight:500;
+  background:var(--surface);
+  border:2px solid var(--line);
+  color:var(--ink-dim);
+  z-index:1;
+}
+.stage.done .node{
+  border-color:var(--accent);
+  color:var(--accent);
+  background:var(--accent-soft);
+}
+.stage.next .node{
+  border-color:var(--amber);
+  color:var(--amber);
+  background:var(--amber-soft);
+}
+.card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:18px 20px 20px;
+}
+.card-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:6px;
+}
+.card h2{
+  font-family:"Fraunces", serif;
+  font-weight:600;
+  font-size:19px;
+  margin:0;
+}
+.status{
+  font-family:"IBM Plex Mono", monospace;
+  font-size:10.5px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  padding:3px 8px;
+  border-radius:999px;
+  white-space:nowrap;
+}
+.stage.done .status{background:var(--accent-soft);color:var(--accent)}
+.stage.next .status{background:var(--amber-soft);color:var(--amber)}
+.card p{
+  color:var(--ink-dim);
+  font-size:14px;
+  line-height:1.55;
+  margin:0 0 12px;
+  max-width:56ch;
+}
+.files{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+}
+.file{
+  font-family:"IBM Plex Mono", monospace;
+  font-size:11.5px;
+  background:var(--surface-2);
+  border:1px solid var(--line);
+  color:var(--ink);
+  padding:4px 9px;
+  border-radius:6px;
+}
+
+figure{margin:52px 0 0}
+figcaption{
+  font-size:13px;
+  color:var(--ink-dim);
+  margin-top:10px;
+  text-align:center;
+}
+svg text{font-family:"IBM Plex Sans", sans-serif}
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Architect Portfolio Platform &middot; Architecture Trail</p>
+    <h1>From requirements to running code</h1>
+    <p class="sub">The path this project's architecture work has taken so far, each stage grounded in the documents it actually produced &mdash; and the one stage still ahead.</p>
+  </header>
+
+  <div class="roadmap">
+    <div class="spine" aria-hidden="true"></div>
+
+    <div class="stage done">
+      <div class="node">01</div>
+      <div class="card">
+        <div class="card-head"><h2>Requirements</h2><span class="status">Done</span></div>
+        <p>What the platform must do and for whom, captured before any structural decisions were made.</p>
+        <div class="files">
+          <span class="file">Project Inception Document</span>
+          <span class="file">Business Requirements Document</span>
+          <span class="file">SRS v1.0</span>
+          <span class="file">EPIC-01…13</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage done">
+      <div class="node">02</div>
+      <div class="card">
+        <div class="card-head"><h2>Drivers &amp; quality attributes</h2><span class="status">Done</span></div>
+        <p>The forces that constrain the design &mdash; scale, security, maintainability &mdash; turned into scenarios an architecture can be tested against.</p>
+        <div class="files">
+          <span class="file">01-architecture-requirements.md</span>
+          <span class="file">02-architecture-drivers.md</span>
+          <span class="file">03-quality-attribute-scenarios.md</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage done">
+      <div class="node">03</div>
+      <div class="card">
+        <div class="card-head"><h2>Architecture options</h2><span class="status">Done</span></div>
+        <p>Candidate structural approaches weighed against the drivers above, before a style was committed to.</p>
+        <div class="files">
+          <span class="file">04-architecture-options.md</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage done">
+      <div class="node">04</div>
+      <div class="card">
+        <div class="card-head"><h2>Decision record</h2><span class="status">Done</span></div>
+        <p>The chosen architectural style, recorded with its rationale so the reasoning survives past the decision itself.</p>
+        <div class="files">
+          <span class="file">ADR-001 — Architectural Style</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage done">
+      <div class="node">05</div>
+      <div class="card">
+        <div class="card-head"><h2>C4 views</h2><span class="status">Done</span></div>
+        <p>The decided style expressed as structure &mdash; system context, containers, and components, each one level more concrete than the last.</p>
+        <div class="files">
+          <span class="file">Level 1 — System Context</span>
+          <span class="file">Level 2 — Container Diagram</span>
+          <span class="file">Level 3 — Component Diagram</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage done">
+      <div class="node">06</div>
+      <div class="card">
+        <div class="card-head"><h2>Domain &amp; solution structure</h2><span class="status">Done</span></div>
+        <p>The business concepts the system models, and the codebase layout those concepts and containers map onto.</p>
+        <div class="files">
+          <span class="file">domain-model.md</span>
+          <span class="file">solution-structure.md</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage next">
+      <div class="node">07</div>
+      <div class="card">
+        <div class="card-head"><h2>Technical implementation</h2><span class="status">Next</span></div>
+        <p>Writing the code that fills in the structure decided above &mdash; the only stage in this trail without artifacts yet.</p>
+        <div class="files">
+          <span class="file">not started</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 720 150" role="img" aria-label="A funnel narrowing from broad requirements through architecture decisions and views down to a single point labeled technical implementation, showing how each stage constrains the next." style="width:100%;height:auto">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+        </marker>
+      </defs>
+      <g fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.55">
+        <line x1="40"  y1="20"  x2="680" y2="72" marker-end="url(#arrow)"/>
+        <line x1="40"  y1="50"  x2="680" y2="74" marker-end="url(#arrow)"/>
+        <line x1="40"  y1="80"  x2="680" y2="76" marker-end="url(#arrow)"/>
+        <line x1="40"  y1="110" x2="680" y2="78" marker-end="url(#arrow)"/>
+        <line x1="40"  y1="140" x2="680" y2="80" marker-end="url(#arrow)"/>
+      </g>
+      <text x="10" y="12" font-size="11" fill="currentColor" opacity="0.8">requirements</text>
+      <text x="10" y="150" font-size="11" fill="currentColor" opacity="0.8">quality &amp; options &amp; decisions</text>
+      <circle cx="694" cy="77" r="5" fill="currentColor"/>
+      <text x="660" y="100" font-size="11" fill="currentColor" text-anchor="end">implementation</text>
+    </svg>
+    <figcaption>Every earlier stage narrows the design space the implementation has to work within — nothing downstream is undoing a decision made upstream.</figcaption>
+  </figure>
+</div>
