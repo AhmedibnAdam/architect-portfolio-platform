@@ -145,3 +145,4 @@ The system enforces several critical business invariants across aggregate bounda
 4. **Access Invariants**:
    - Every `User` account must maintain at least one active administrative role.
    - The primary `SuperAdmin` user account cannot be deactivated or deleted.
+
