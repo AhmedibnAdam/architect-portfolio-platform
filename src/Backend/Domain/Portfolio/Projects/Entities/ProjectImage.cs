@@ -1,3 +1,4 @@
+using ArchitectPortfolioPlatform.Domain.Common;
 namespace ArchitectPortfolioPlatform.Domain.Portfolio.Projects.Entities;
 
 public sealed class ProjectImage
@@ -60,21 +61,5 @@ public sealed class ProjectImage
     public void UpdateCaption(string? caption)
     {
         Caption = caption;
-    }
-
-    [Serializable]
-    private class DomainException : Exception
-    {
-        public DomainException()
-        {
-        }
-
-        public DomainException(string? message) : base(message)
-        {
-        }
-
-        public DomainException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
     }
 }

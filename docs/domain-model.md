@@ -42,7 +42,7 @@ The primary domain areas are:
        │                   │                   │
        ├── Profile         ├── Projects        └── Articles
        ├── Experience      ├── Skills
-       └── Education*     └── CV
+       └── Education*      └── CV
 ```
 
 *\*Education is currently considered a potential future extension rather than a confirmed MVP domain module.*

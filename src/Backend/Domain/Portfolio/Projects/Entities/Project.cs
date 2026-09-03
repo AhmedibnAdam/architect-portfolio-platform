@@ -2,7 +2,6 @@ using ArchitectPortfolioPlatform.Domain.Portfolio.Projects.ValueObjects;
 using ArchitectPortfolioPlatform.Domain.Common;
 using ArchitectPortfolioPlatform.Domain.Portfolio.Projects.Events;
 
-
 namespace ArchitectPortfolioPlatform.Domain.Portfolio.Projects.Entities;
 
 public sealed class Project
@@ -25,8 +24,7 @@ public sealed class Project
     public IReadOnlyCollection<ProjectImage> Images =>
         _images.AsReadOnly();
 
-    private Project()
-        : base(default)
+    private Project() : base(default)
     {
         Title = string.Empty;
         Description = string.Empty;
@@ -39,8 +37,7 @@ public sealed class Project
         string title,
         string description,
         ProjectMetadata metadata,
-        ProjectDuration duration)
-        : base(id)
+        ProjectDuration duration) : base(id)
     {
         if (string.IsNullOrWhiteSpace(title))
         {
@@ -87,33 +84,33 @@ public sealed class Project
     }
 
     public void Publish()
-{
-    if (string.IsNullOrWhiteSpace(Title))
     {
-        throw new DomainException(
-            "A project must have a title before publishing.");
+        if (string.IsNullOrWhiteSpace(Title))
+        {
+            throw new DomainException(
+                "A project must have a title before publishing.");
+        }
+
+        if (!_images.Any())
+        {
+            throw new DomainException(
+                "A published project must have a thumbnail image.");
+        }
+
+        if (IsFeatured && !_images.Any(x => x.IsHero))
+        {
+            throw new DomainException(
+                "A featured project must have a hero image.");
+        }
+
+        Status = ProjectStatus.Published;
+
+        AddDomainEvent(
+            new ProjectPublished(Id, DateTime.UtcNow));
     }
 
-    if (!_images.Any())
+    public void Unpublish()
     {
-        throw new DomainException(
-            "A published project must have a thumbnail image.");
+        Status = ProjectStatus.Draft;
     }
-
-    if (IsFeatured && !_images.Any(x => x.IsHero))
-    {
-        throw new DomainException(
-            "A featured project must have a hero image.");
-    }
-
-    Status = ProjectStatus.Published;
-
-    AddDomainEvent(
-        new ProjectPublished(Id, DateTime.UtcNow));
-}
-
-public void Unpublish()
-{
-    Status = ProjectStatus.Draft;
-}
 }

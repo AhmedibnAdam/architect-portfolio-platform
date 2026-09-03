@@ -1,11 +1,11 @@
-/Users/hussein/Documents/Profolio project/src/Backend/Domain/bin/Debug/net10.0/Domain.deps.json
-/Users/hussein/Documents/Profolio project/src/Backend/Domain/bin/Debug/net10.0/Domain.dll
-/Users/hussein/Documents/Profolio project/src/Backend/Domain/bin/Debug/net10.0/Domain.pdb
 /Users/hussein/Documents/Profolio project/src/Backend/Domain/obj/Debug/net10.0/Domain.GeneratedMSBuildEditorConfig.editorconfig
 /Users/hussein/Documents/Profolio project/src/Backend/Domain/obj/Debug/net10.0/Domain.AssemblyInfoInputs.cache
 /Users/hussein/Documents/Profolio project/src/Backend/Domain/obj/Debug/net10.0/Domain.AssemblyInfo.cs
 /Users/hussein/Documents/Profolio project/src/Backend/Domain/obj/Debug/net10.0/Domain.csproj.CoreCompileInputs.cache
 /Users/hussein/Documents/Profolio project/src/Backend/Domain/obj/Debug/net10.0/Domain.sourcelink.json
+/Users/hussein/Documents/Profolio project/src/Backend/Domain/bin/Debug/net10.0/Domain.deps.json
+/Users/hussein/Documents/Profolio project/src/Backend/Domain/bin/Debug/net10.0/Domain.dll
+/Users/hussein/Documents/Profolio project/src/Backend/Domain/bin/Debug/net10.0/Domain.pdb
 /Users/hussein/Documents/Profolio project/src/Backend/Domain/obj/Debug/net10.0/Domain.dll
 /Users/hussein/Documents/Profolio project/src/Backend/Domain/obj/Debug/net10.0/refint/Domain.dll
 /Users/hussein/Documents/Profolio project/src/Backend/Domain/obj/Debug/net10.0/Domain.pdb
