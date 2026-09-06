@@ -1,13 +1,3 @@
-// Experience
-//  ├── Company
-//  ├── Position
-//  ├── Description
-//  ├── Responsibilities
-//  ├── Achievements
-//  ├── StartDate
-//  ├── EndDate
-//  └── IsCurrent
-// ```
 
 using ArchitectPortfolioPlatform.Domain.Common;
 using ArchitectPortfolioPlatform.Domain.Portfolio.Experience.ValueObjects;
