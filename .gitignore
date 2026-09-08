@@ -1,0 +1,19 @@
+## .NET
+bin/
+obj/
+*.user
+
+## Rider / VS
+.vs/
+.idea/
+*.suo
+
+## VS Code
+.vscode/
+
+## OS
+.DS_Store
+Thumbs.db
+
+## Logs
+*.log
