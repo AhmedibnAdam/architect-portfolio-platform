@@ -1,13 +1,17 @@
+# .NET build output
 ## .NET
 bin/
 obj/
 *.user
 
+# Rider / VS
 ## Rider / VS
 .vs/
 .idea/
 *.suo
 
+# OS
+.DS_Store
 ## VS Code
 .vscode/
 
