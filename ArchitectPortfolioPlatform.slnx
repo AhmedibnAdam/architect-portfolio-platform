@@ -7,7 +7,7 @@
     <Project Path="src/Backend/Infrastructure/Infrastructure.csproj" />
   </Folder>
   <Folder Name="/tests/">
-    <Project Path="tests/Backend.IntegrationTests/Backend.IntegrationTests.csproj" />
-    <Project Path="tests/Backend.Tests/Backend.Tests.csproj" />
+    <Project Path="tests/Backend/Backend.Tests/Backend.Tests.csproj" />
+    <Project Path="tests/Backend/IntegrationTests/Backend.IntegrationTests.csproj" />
   </Folder>
 </Solution>
