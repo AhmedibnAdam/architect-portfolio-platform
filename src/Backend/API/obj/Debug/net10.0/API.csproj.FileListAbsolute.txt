@@ -38,3 +38,8 @@
 /Users/hussein/Documents/Profolio project/src/Backend/API/obj/Debug/net10.0/API.pdb
 /Users/hussein/Documents/Profolio project/src/Backend/API/obj/Debug/net10.0/API.genruntimeconfig.cache
 /Users/hussein/Documents/Profolio project/src/Backend/API/obj/Debug/net10.0/ref/API.dll
+/Users/hussein/Documents/Profolio project/src/Backend/API/bin/Debug/net10.0/Microsoft.EntityFrameworkCore.dll
+/Users/hussein/Documents/Profolio project/src/Backend/API/bin/Debug/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/Users/hussein/Documents/Profolio project/src/Backend/API/bin/Debug/net10.0/Microsoft.EntityFrameworkCore.Relational.dll
+/Users/hussein/Documents/Profolio project/src/Backend/API/bin/Debug/net10.0/Npgsql.dll
+/Users/hussein/Documents/Profolio project/src/Backend/API/bin/Debug/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
