@@ -66,6 +66,26 @@ public sealed class Project
             duration);
     }
 
+
+
+    public void Update(
+        string title,
+        string description,
+        ProjectMetadata metadata,
+        ProjectDuration duration)
+    {
+        if (string.IsNullOrWhiteSpace(title))
+        {
+            throw new DomainException(
+                "Project title cannot be empty.");
+        }
+
+        Title = title;
+        Description = description;
+        Metadata = metadata;
+        Duration = duration;
+    }
+
     public void AddImage(ProjectImage image)
     {
         ArgumentNullException.ThrowIfNull(image);
@@ -113,4 +133,5 @@ public sealed class Project
     {
         Status = ProjectStatus.Draft;
     }
+
 }
